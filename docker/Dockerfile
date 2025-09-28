@@ -33,5 +33,4 @@ COPY scripts/app.sh ./app.sh
 # Make it executable
 RUN chmod +x app.sh
 CMD ["./app.sh"]
-
-#CMD ["tail", "-f", "/dev/null"]
+CMD ["tail", "-f", "/dev/null"]
