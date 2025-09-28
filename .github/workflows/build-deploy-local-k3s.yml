@@ -16,14 +16,12 @@ jobs:                # ← column 1
       - name: Build Docker image
         run: |
           docker buildx build \
-          -t devops-pipeline:pr-${{ github.event.pull_request.number }} \
+          -t devops-pipeline:latest \
           --file docker/Dockerfile \
           .
 
       - name: Save Docker image
-        run: docker save devops-pipeline:pr-
-          ${{ github.event.pull_request.number }} \
-          -o devops-pipeline.tar
+        run: docker save devops-pipeline:latest -o devops-pipeline.tar
 
       - name: Import into containerd
         run: sudo ctr images import devops-pipeline.tar
