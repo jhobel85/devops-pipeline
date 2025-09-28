@@ -20,12 +20,13 @@ jobs:                # ← column 1
           --file docker/Dockerfile \
           .
 
-      - name: Load image into K3s
-        run: |
-          # If using containerd (default in K3s)
-          ctr images import <(docker save devops-pipeline:pr-
-            ${{ github.event.pull_request.number }} \
-            -o devops-pipeline.tar) devops-pipeline.tar
+      - name: Save Docker image
+        run: docker save devops-pipeline:pr-
+          ${{ github.event.pull_request.number }} \
+          -o devops-pipeline.tar
+
+      - name: Import into containerd
+        run: sudo ctr images import devops-pipeline.tar
 
       - name: Deploy to K3s
         run: |
