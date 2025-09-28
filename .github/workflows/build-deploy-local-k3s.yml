@@ -3,7 +3,7 @@ name: Build and Deploy to Local K3s
 on:
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:                # ← column 1
   build-deploy:      # ← column 3 (two spaces in)
