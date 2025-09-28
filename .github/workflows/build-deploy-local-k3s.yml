@@ -5,9 +5,10 @@ on:
     branches:
       - main
 
-jobs:
-  build-deploy:
+jobs:                # ← column 1
+  build-deploy:      # ← column 3 (two spaces in)
     runs-on: self-hosted
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
