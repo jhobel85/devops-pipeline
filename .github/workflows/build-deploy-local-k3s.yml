@@ -15,7 +15,8 @@ jobs:                # ← column 1
 
       - name: Build Docker image
         run: |
-          docker build -t devops-pipeline:pr-${{ github.event.pull_request.number }} docker/Dockerfile .
+          docker build -t devops-pipeline:pr-
+            ${{ github.event.pull_request.number }} -f docker/Dockerfile .
 
       - name: Load image into K3s
         run: |
