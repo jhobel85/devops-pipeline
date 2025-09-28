@@ -5,8 +5,8 @@ on:
     branches:
       - main
 
-jobs:
-  build-deploy:
+jobs:                # ← column 1
+  build-deploy:      # ← column 3 (two spaces in)
     runs-on: self-hosted
 
     steps:
@@ -20,13 +20,14 @@ jobs:
       - name: Load image into K3s
         run: |
           # If using containerd (default in K3s)
-          ctr images import <(docker save local-app:pr-${{ github.event.pull_request.number }})
+          ctr images import <(docker save local-app:pr-
+            ${{ github.event.pull_request.number }})
 
       - name: Deploy to K3s
         run: |
           kubectl apply -f kube/deployment.yaml
 
-   - name: Verify deployment
+      - name: Verify deployment
         run: |
           echo "Checking K3s cluster status..."
           kubectl get nodes
