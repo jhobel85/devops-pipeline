@@ -24,7 +24,8 @@ jobs:                # ← column 1
         run: |
           # If using containerd (default in K3s)
           ctr images import <(docker save devops-pipeline:pr-
-            ${{ github.event.pull_request.number }})
+            ${{ github.event.pull_request.number }} \
+            -o devops-pipeline.tar) devops-pipeline.tar
 
       - name: Deploy to K3s
         run: |
