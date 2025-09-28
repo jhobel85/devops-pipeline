@@ -29,7 +29,7 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | g
 
 WORKDIR /workspace
 # Copy your script into the workspace
-COPY ../scripts/app.sh ./app.sh
+COPY scripts/app.sh ./app.sh
 # Make it executable
 RUN chmod +x app.sh
 CMD ["./app.sh"]
